@@ -220,3 +220,7 @@ provide reference material. Choose the entry that matches your task.
 [Contribute](../.github/CONTRIBUTING.md) · [Get help](../.github/SUPPORT.md) · [Code of conduct](../.github/CODE_OF_CONDUCT.md) · [Security](../.github/SECURITY.md) · [MIT License](../LICENSE)
 
 AI agents: start with [`AGENTS.md`](../AGENTS.md) and follow its task-specific routing.
+
+## Pocket co application
+
+See the [Pocket co application guide](apps/pocket-co.md) for controls, assets and validation.

@@ -1,16 +1,8 @@
 idf_component_register(
-    SRCS "main.c"
-         "demo_navigation.c"
-         "ui_pixel.c"
-         "ui_pixel_math.c"
-         "demo_display.c"
-         "demo_button.c"
-         "demo_audio.c"
-         "demo_battery.c"
-         "demo_radio.c"
-         "demo_wifi.c"
-         "demo_ble.c"
-         "demo_low_power.c"
-    INCLUDE_DIRS "."
-    REQUIRES bsp bt esp_event esp_hw_support esp_netif esp_timer esp_wifi nvs_flash
+    SRCS "main.c" "pocket-co-state.c" "pocket-co-content.c" "pocket-co-ui.c"
+         "../assets/fonts/pocket-co-font-16.c"
+         "../assets/fonts/pocket-co-font-22.c"
+         "../assets/images/pocket-co-images.c"
+    INCLUDE_DIRS "." "../assets/images"
+    REQUIRES bsp esp_timer esp_hw_support esp_system
 )

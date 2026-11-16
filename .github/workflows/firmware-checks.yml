@@ -9,6 +9,7 @@ on:
   push:
     branches:
       - main
+      - codex/pocket-co
     paths-ignore:
       - "docs/**"
       - "skills/**"

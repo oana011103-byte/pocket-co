@@ -1,0 +1,11 @@
+<!doctype html><meta charset="utf-8"><style>html,body{margin:0;background:#211c18}canvas{display:block}</style>
+<canvas id="co" width="128" height="110"></canvas><script src="/rive.js"></script><script>
+rive.RuntimeLoader.setWasmUrl('/rive.wasm');
+window.make = name => new Promise((resolve,reject) => {
+ if(window.player)window.player.cleanup();
+ const p = new rive.Rive({src:'/perching-co.riv',canvas:document.querySelector('#co'),animations:name,
+ autoplay:false,layout:new rive.Layout({fit:rive.Fit.Contain}),
+ onLoad(){ p.pause(); window.player=p; window.animation=name; resolve(p.animationNames); },onLoadError:reject});
+});
+window.capture = time => { player.scrub(animation,time); return document.querySelector('#co').toDataURL('image/png'); };
+</script>

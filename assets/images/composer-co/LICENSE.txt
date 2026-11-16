@@ -1,0 +1,17 @@
+Pocket co / Cola brand assets — project redistribution permission
+
+Copyright remains with the respective Cola brand asset rights holders.
+
+The project publisher has authorized public redistribution of the small Co
+character and animations with this project. You may copy and redistribute
+these assets as part of Pocket co source distributions and compiled firmware,
+including project previews and format-converted renderings. Retain this notice.
+
+This permission covers assets/images/composer-co/, the generated character
+frames in assets/images/pocket-co-images.c, and Pocket co preview images.
+It does not place them under the project's MIT code license, transfer ownership,
+grant a separate license for unrelated uses or altered character artwork, or
+grant trademark rights, endorsement, or permission to imply Cola affiliation.
+For uses beyond redistribution with this project, obtain separate permission.
+
+These assets are provided as is, without warranty.

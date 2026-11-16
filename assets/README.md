@@ -59,3 +59,40 @@ Decoded 80-byte SHA-256:
 `fa7365671093ef449c5bdcfb4adb279e3d275f888109f50b6b2f21e9b96220d5`.
 This is a fuel-gauge profile, not a charging configuration or a generic profile
 for every 500 mAh cell; see the [hardware guide](../docs/hardware-design/AI_HARDWARE_DEVELOPMENT_GUIDE.md#9-cw2017-fuel-gauge).
+
+## Pocket co application assets
+
+- `images/composer-co/perching-co.riv` is the unchanged Rive file used by
+  Cola's input-box companion, copied from the user's local Cola project
+  (`apps/desktop/dev/composer-co/perching-rive/build/perching-co.riv`). It is
+  a Cola brand asset. Public redistribution with Pocket co source and firmware
+  is authorized under `images/composer-co/LICENSE.txt`; brand ownership and
+  trademark rights are retained. This permission is separate from the MIT code
+  license. The `Idle`, `Thinking`, and `Complete` animations are
+  exported without changing the original character artwork or keyframes.
+- `images/composer-co/frames/` retains 128 x 110 transparent PNG samples at
+  80 ms intervals, plus a manifest binding them to source/runtime hashes.
+  `tools/capture-pocket-co-frames.mjs` exports them using the original Rive
+  JS/WASM runtime. Pass `--runtime-dir`, `--playwright` and optionally
+  `--browser` to select local tools without changing system configuration.
+- `images/pocket-co-images.c` and `pocket-co-animation.h` contain deduplicated,
+  flash-resident RGB565 frame tables. They preserve Rive colors and composite
+  over the application's background. Thirty unique frames use 844,800 bytes
+  of Flash; no full-frame animation buffer or Rive runtime is needed on-device.
+- `fonts/noto-sans-sc.ttf` is Noto Sans SC from Google Fonts
+  (`ofl/notosanssc/NotoSansSC[wght].ttf`), licensed under the SIL Open Font
+  License in `fonts/noto-ofl.txt`. `fonts/noto-sans-sc-medium.ttf` is its weight
+  500 instance. The generated `pocket-co-font-16.c` and `pocket-co-font-22.c`
+  cover ASCII plus the application's fixed Chinese strings at 16/22 px, 4 bpp,
+  without compression. `fonts/pocket-co-symbols.txt` retains the inventory.
+- Regenerate with Python Pillow 11.3.0 / fonttools 4.60.2 and
+  `python3 tools/generate-pocket-co-assets.py --converter <lv_font_conv.js>`
+  using LVGL's `lv_font_conv` 1.5.3. The script checks source glyph coverage;
+  the application and host renderer check the actual linked LVGL font mappings.
+
+## Text
+
+`text/pocket-co-answers.txt` preserves the user's 110 approved Chinese answers
+with numbering. Firmware strings match that text exactly after removing display
+line breaks. The final ten add warmer, imaginative prompts. No answer has a
+trailing full stop.

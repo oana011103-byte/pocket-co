@@ -55,3 +55,32 @@ BSP 在 `components/bsp/src/bsp_battery.c` 中嵌入这 80 字节，主机检查
 `fa7365671093ef449c5bdcfb4adb279e3d275f888109f50b6b2f21e9b96220d5`。
 这是电量计参数，不是充电配置，也不能通用于所有 500 mAh 电芯；详见
 [硬件指南](../docs/hardware-design/AI_HARDWARE_DEVELOPMENT_GUIDE.zh_CN.md#9-cw2017-电池计)。
+
+## 口袋小 co 应用素材
+
+- `images/composer-co/perching-co.riv` 原样复制自用户本地 Cola 输入框伴侣的
+  `apps/desktop/dev/composer-co/perching-rive/build/perching-co.riv`。
+  它是 Cola 品牌素材，已获准随口袋小 Co 源码和固件公开分发，
+  具体范围见 `images/composer-co/LICENSE.txt`；品牌所有权及商标权保留，
+  不归入代码的 MIT 许可证。
+  导出 `Idle`、`Thinking`、`Complete` 动画，不修改原始形象或关键帧。
+- `images/composer-co/frames/` 保存每 80 毫秒采样的 128 x 110 透明 PNG，
+  清单记录源文件和运行库哈希。`tools/capture-pocket-co-frames.mjs` 使用原始
+  Rive JS/WASM 导出；可通过 `--runtime-dir`、`--playwright` 与可选 `--browser`
+  指定本地工具，不改变系统配置。
+- `images/pocket-co-images.c` 与 `pocket-co-animation.h` 保存去重后的 RGB565 帧表，
+  保留原始 Rive 配色并合成到应用背景。30 个独立帧占用 844,800 字节 Flash，
+  设备不需要完整动画帧缓冲或 Rive 运行库。
+- `fonts/noto-sans-sc.ttf` 来自 Google Fonts 的 Noto Sans SC
+  （`ofl/notosanssc/NotoSansSC[wght].ttf`），遵循 SIL Open Font License，
+  授权文本位于 `fonts/noto-ofl.txt`。`fonts/noto-sans-sc-medium.ttf` 是字重 500 的实例。
+  `pocket-co-font-16.c` 和 `pocket-co-font-22.c` 包含 ASCII 与应用固定中文文案，
+  分别为 16/22 像素、4 bpp、不压缩；`fonts/pocket-co-symbols.txt` 保存字符清单。
+- 使用 Pillow 11.3.0、fonttools 4.60.2 和 LVGL 的 `lv_font_conv` 1.5.3，执行
+  `python3 tools/generate-pocket-co-assets.py --converter <lv_font_conv.js>` 可重新生成。
+  脚本检查源字体覆盖，应用与电脑端渲染程序检查实际链接的 LVGL 字体映射。
+
+## 文案
+
+`text/pocket-co-answers.txt` 保存用户确认的 110 条中文答案与编号。固件文字去掉显示换行后
+与此稿逐字一致；最后 10 条增加温暖与想象空间，全部答案末尾不加句号。

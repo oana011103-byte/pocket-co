@@ -75,6 +75,10 @@ run_static_checks() {
             -o "${test_dir}/test_demo_${demo}_runtime"
         "${test_dir}/test_demo_${demo}_runtime"
     done
+    "${CC:-cc}" -std=c11 -Wall -Wextra -Werror -Imain \
+        tests/test-pocket-co-state.c main/pocket-co-state.c main/pocket-co-content.c \
+        -o "${test_dir}/test-pocket-co-state"
+    "${test_dir}/test-pocket-co-state"
     PYTHONDONTWRITEBYTECODE=1 python3 tests/test_battery_profile.py
     PYTHONDONTWRITEBYTECODE=1 python3 tests/test_deep_sleep_contract.py
     PYTHONDONTWRITEBYTECODE=1 python3 tests/test_key_wake_contract.py
